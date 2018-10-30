@@ -1,0 +1,11 @@
+Define a mathematical equation for resource consumption
+	(ex: count operations)
+
+Find the best matching curve
+
+
+Analysing the factorial function
+	let n represent the value we are find in factorial ex
+	let T(n) represent # of operations needed to find factorial of n using the factorial function
+	T(n) = 4n + 5
+	

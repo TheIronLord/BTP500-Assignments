@@ -1,0 +1,54 @@
+if (*lowst < *pivot){
+			//Preparing Nodes For Connection
+			Node* lowstPrv = lowst.m_curr->m_prev;
+			Node* lowstNex = lowst.m_curr->m_next;
+			Node* wallPrv = wall.m_curr->m_prev;
+			Node* wallNex = wall.m_curr->m_next;
+			Node* lowstConnct = lowst.m_curr;
+			Node* wallConnct = pivot.m_curr;
+
+			//Swap
+			pivotConnct->m_prev = lowstPrv;
+			lowstPrv->m_next = wallConnct;
+			pivotConnct->m_next = lowstNex;
+			lowstNex->m_prev = wallConnct;
+			
+			lowstConnct->m_prev = wallPrv;
+			wallPrv->m_next = lowstConnct;
+			lowstConnct->m_next = wallNex;
+			wallNex->m_prev = lowstConnct;
+
+			wall.m_curr = lowst.m_curr;
+			++wall;
+		}
+		else if (*pivot < *lowst){
+			Node* pivotPrv = pivot.m_curr->m_prev;
+			Node* wallPrv = wall.m_curr->m_prev;
+			Node* wallNex = wall.m_curr->m_next;
+			Node* wallConnct = wall.m_curr;
+			Node* pivotConnct = pivot.m_curr;
+
+			walConnct->m_next = m_tail;
+			m_tail->m_prev = wallConnct;
+			wallConnct->m_prev = pivotPrv;
+			pivotPrv->m_next = wallConnct;
+
+			pivotConnct->m_prev = wallPrv;
+			wallPrv->m_next = pivotConnct;
+			pivotConnct->m_next = wallNex;
+			wallNex->m_prev = pivotConnct;
+
+			wall.m_curr = pivot.m_curr;
+			++wall;
+		}
+		
+		
+		if (lowst == pivot && wall != pivot){
+			lowst.m_curr = wall.m_curr;
+		}
+		else{
+			finished = true;
+		}
+		if(!finished){
+			qSortIterative(lowst++, pivot, wall);
+		}

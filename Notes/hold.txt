@@ -1,0 +1,38 @@
+
+void insert(int data){
+    Node* srch = root_;
+    bool finish = false;
+    if(!root_){
+        root_ = new Node(data);
+    }else{
+        while(!finish){
+            if(data_ < srch->data_ && srch->left_){
+                srch = srch->left_;
+            }else if(!srch->left_){
+                finish = true;
+            }
+            if(data_ > srch->data_ && srch->right_){
+                srch = srch->right_;
+            }else if(!srch->right_){
+                finish = true;
+            }
+
+        if(data < srch->data){
+            srch->left_ = new Node(data);
+        }else{
+            srch->right_ = new Node(data);
+        }
+    }
+}
+
+void ins(Node*& subtreeroot, data){
+    Node* srch = subtreeroot;
+    if(!srch){
+        srch = new Node(data);
+    }
+    if(data < srch->data_){
+        ins(srch->left_, data);
+    }else(srch->data_ > data){
+        ins(srch->right_, data)
+    }
+}

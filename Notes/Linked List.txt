@@ -1,0 +1,43 @@
+template <typename T>
+class SList{
+	struct Node{
+		T data_;
+		Node* next_;
+		Node* prev_;
+		Node(const T& data, Node* n = nullptr, Node* p = nullptr){
+			data_ = data;
+			next_ = n;
+			prev_ = p;
+		}
+	};
+	Node* head_; //ptr to the first node
+	Node* tail_; //ptr to the last node
+public:
+	class iterator{
+		
+	};
+	//initialized empty linked list
+	SList(){
+		
+	}
+	//puts data at front of list
+	void push_front(const T& data){
+		
+	}
+	//puts data at back of list
+	void push_back(const T& data){
+
+	}
+	void pop_front(){
+
+	}
+	void pop_back(){
+
+	}
+	void emplace(const T& data, iterator &it){
+
+	}
+	unsigned int size(){
+
+	}			
+}

@@ -1,0 +1,110 @@
+	void qSortIterative(){
+		iterator pivot = end();
+		iterator wall = begin();
+		iterator currnt = begin();
+		iterator compare = begin();
+		bool finished = false;
+		pivot--;
+		wall;
+
+		while (!finished){
+			while (currnt != pivot){
+				if (*currnt < *pivot){
+					if (currnt.m_curr->m_prev != m_head){
+						Node* wallCurr = wall.m_curr;
+
+						if (*currnt < *wall){
+							if (wallCurr->m_next == currnt.m_curr){
+								Node* currntNxt = currnt.m_curr->m_next;
+								Node* wallPrv = wallCurr->m_prev;
+
+								//Connect the wallPrv with the next Node after currnt
+								wallCurr->m_next = currntNxt;
+								currntNxt->m_prev = wallCurr;
+								
+								//Connect the wallCurr with currnt and currnt to wallPrv
+								wallCurr->m_prev = currnt.m_curr;
+								currnt.m_curr->m_next = wallCurr;
+								currnt.m_curr->m_prev = wallPrv;
+								wallPrv->m_next = currnt.m_curr;
+							} else{
+								Node* wallPrv = wallCurr->m_prev;
+								Node* wallNxt = wallCurr->m_next;
+								Node* currntPrv = currnt.m_curr->m_prev;
+								Node* currntNxt = currnt.m_curr->m_next;
+
+								wallCurr->m_prev = currntPrv;
+								currntPrv->m_next = wallCurr;
+								wallCurr->m_next = currntNxt;
+								currntNxt->m_prev = wallCurr;
+
+								currnt.m_curr->m_prev = wallPrv;
+								wallPrv->m_next = currnt.m_curr;
+								currnt.m_curr->m_next = wallNxt;
+								wallNxt->m_prev = currnt.m_curr;
+							}
+							Node* holding = currnt.m_curr;
+							currnt.m_curr = wall.m_curr;
+							wall.m_curr = holding;
+							++wall;
+							++currnt;
+						} else{
+							++currnt;
+						}
+					} 
+				} else{
+					++currnt;
+				}
+			}
+			//////
+			//If there is nothing smaller than pivot move pivot to right of the wall and advance wall
+			//Get wall Previous, wall Current, wall Next and wall after next
+			//
+			if (wall != pivot){
+				if (*wall > *pivot){
+					if (pivot.m_curr->m_prev != wall.m_curr){
+						Node* pivotPrv = pivot.m_curr->m_prev;
+
+
+						Node* wallNxt = wall.m_curr->m_next;
+
+						Node* wallPrv = wall.m_curr->m_prev;
+						Node* toMove = wall.m_curr;
+
+						//Make connections
+						pivot.m_curr->m_prev = wallPrv;
+						wallPrv->m_next = pivot.m_curr;
+						pivot.m_curr->m_next = wallNxt;
+						wallNxt->m_prev = pivot.m_curr;
+
+
+						toMove->m_next = m_tail;
+						m_tail->m_prev = toMove;
+						toMove->m_prev = pivotPrv;
+						pivotPrv->m_next = toMove;
+
+						Node* hold = pivot.m_curr;
+						pivot.m_curr = toMove;
+						wall.m_curr = hold;
+						++currnt;
+						++wall;
+					} else{
+						Node* pivotPrv = pivot.m_curr->m_prev;
+						pivotPrv = pivotPrv->m_prev;
+
+						pivot.m_curr->m_prev = pivotPrv;
+						pivotPrv->m_next = pivot.m_curr;
+						pivot.m_curr->m_next = wall.m_curr;
+						wall.m_curr->m_prev = pivot.m_curr;
+
+						wall.m_curr->m_next = m_tail;
+						m_tail->m_prev = wall.m_curr;
+						finished = true;
+					}
+				} else{
+					++wall;
+				}
+			}
+		}
+		
+	}

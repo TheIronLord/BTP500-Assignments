@@ -1,0 +1,2 @@
+insertion sort : minus one from size everytime in the inner loop
+selection sort : find the smallest number and swap with the first element, but plus the inner loop
